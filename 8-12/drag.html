@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			div{
+				width: 200px;
+				height: 300px;
+				border: dotted;
+			}
+		</style>
+		<script>
+			function allowDrop(ev)
+			{
+				ev.preventDefault();
+			}
+			function drag(ev)
+			{
+				ev.dataTransfer.setData("Text",ev.target.id);
+			}
+			function drop(ev)
+			{
+				ev.preventDefault();
+				var data=ev.dataTransfer.getData("Text");  //获取被拖的数据，
+				//该方法将返回在setData()方法中设置为相同类型的任何数据
+				ev.target.appendChild(document.getElementById(data));
+				//把被拖元素追加到放置元素（目标元素）中
+			}
+		</script>
+	</head>
+	<body>
+		<p>请把我拖进方框里</p>
+		<div id='box' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	    <img id='dog' src="img/dog.jpg" draggable="true" ondragstart="drag(event)">
+	</body>
+</html>
+<!--1、拖动什麽
+	dragstart属性调用drag(event)函数，它规定了被拖动的数据，dataTransfer.setData()方法
+	设置被拖动数据的数据类型和值
+	2、放到何处
+	ondragover事件规定在何处放置被拖动的数据
+	默认情况下，无法将数据/元素放到其他元素中，如果设置允许放置，我们需要阻止对元素的默认处理方式
+	需要通过调用ondragover事件的event.preventDefault()方法
+	3、进行放置
+	当放置被拖数据时，会发生drop事件
+	ondrop属性调用调用drop（event）函数
+-->

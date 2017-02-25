@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+	<input type="button" id="" value="" />
+	</hr>
+		<canvas id="canv" width="500" height="500" style="border: 1px solid red"> </canvas>
+		<script>
+			var can=document.getElementById("canv");
+			var con=can.getContext("2d");
+			var flag=0;
+//getElementByld  根据指定的 id 属性值得到对象。返回 id 属性值等于 sID 的第一个对象的引用。假如对应的为一组对象，
+//则返回该组对象中的第一个。 如果无符合条件的对象，则返回 null。
+            can.onmousedown=function(evt){
+            	evt=window.event||evt;
+            	var startX=evt.pageX-this.offsetLeft;
+            	var starty=evt.pageY-this.offsetTop;
+            	con.beginPath();
+            	con.moveTo(startX,startY);
+            	flag=1;
+            }
+            can.onmousemove=function(evt)
+            {
+            	evt=window.event||evt;
+            	var endX=evt.pageX-this.offsetLeft;
+            	var endY=evt.pageY-this.offsetTop;
+            	if(flag)
+            	{
+            		con.lineTo(endX,endY);
+            		con.stroke();
+            	}
+            }
+            can.onmouseup=function(evt){
+            	flag=0;
+            }
+            can.onmouseout=function(evt){
+            	flag=0;
+            }
+		</script>
+	</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	 <style>
+	 	div{
+	 		width: 200px;
+	 		height: 300px;
+	 		border: 1px solid red;
+	 	}
+	 </style>
+	 <script>
+	 	function allowDrop(ev)
+	 	{
+	 		ev.preventDefault();
+	 	}
+	 	function drag(ev)
+	 	{
+	 		ev.dataTransfer.setData("Text",ev.target.id);
+	 	}
+	 	
+	 	function drop(ev)
+	 	{
+	 		ev.preventDefault();
+	 		var data=ev.dataTransfer.getData("Text");
+	 		ev.target.appendChild(document.getElementById(data));
+
+	 	}
+	 </script>
+	</head>
+	<body>
+		<p>灏忕嫍璇达細璇锋妸鎴戞斁鍒扮瓙瀛愰噷</p>
+		<div id='box' ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+		<img id='dog' src="img/dog.jpg" draggable="true" ondragstart="drag(event)">
+	</body>
+</html>
